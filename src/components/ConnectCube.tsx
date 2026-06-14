@@ -6,20 +6,16 @@ const LINE2 = "M62.0101 304.286C50.9158 309.593 24.28 333.533 26.4772 345.174C28
 const LINE3 = "M235.5 179.499C238.5 154 249.5 131.5 273 114.5C296.915 97.1995 321.5 96.5001 330 102.5"
 
 export default function ConnectCube({
-  width = 431,
-  height = 443,
+  className = "w-100 h-100",
   float = true,
   floatDistance = 20,
   beam = true,
-  pulse = true,
 }: {
-  width?: number,
-  height?: number,
+  className?: string
   float?: boolean,
   floatDistance?: number
   colors?: string[]
   beam?: boolean
-  pulse?: boolean
 }) {
 
   const [colors, setColors] = useState<string[]>(["#988BFF", "#191D26"])
@@ -29,8 +25,14 @@ export default function ConnectCube({
       initial={float ? { y: floatDistance } : undefined}
       animate={{ y: float ? -floatDistance : 0 }}
       transition={{ duration: 3, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+      className="rounded-3xl overflow-hidden"
     >
-      <svg width={width} height={height} viewBox="0 0 431 443" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        className={className}
+        viewBox="0 0 431 443"
+        fill="none"
+        preserveAspectRatio="xMidYMid meet"
+      >
         <rect x="127" y="58" width="178" height="119" fill="#988BFF" />
         <path d="M216 16L398.731 126.25H33.2686L216 16Z" fill="#988BFF" />
         <foreignObject x="-71.1285" y="-96.7436" width="573.257" height="636.487"><div style={{
@@ -65,7 +67,7 @@ export default function ConnectCube({
             cx="7.5" cy="7.5" r="7.5"
             fill="#988BFF" filter="url(#cubeGlow)"
             initial={{ scale: 1 }}
-            animate={{ scale: pulse ? [1, 1.4, 1] : undefined }}
+            animate={{ scale: [1, 1.4, 1] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut", delay: 0 }}
             style={{ transformBox: "fill-box", transformOrigin: "center" }}
           />
@@ -111,7 +113,7 @@ export default function ConnectCube({
             cx="7.5" cy="7.5" r="7.5"
             fill="#988BFF" filter="url(#cubeGlow)"
             initial={{ scale: 1 }}
-            animate={{ scale: pulse ? [1, 1.4, 1] : undefined }}
+            animate={{ scale: [1, 1.4, 1] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
             style={{ transformBox: "fill-box", transformOrigin: "center" }}
           />
@@ -122,7 +124,7 @@ export default function ConnectCube({
             cx="7.5" cy="7.5" r="7.5"
             fill="#988BFF" filter="url(#cubeGlow)"
             initial={{ scale: 1 }}
-            animate={{ scale: pulse ? [1, 1.4, 1] : undefined }}
+            animate={{ scale: [1, 1.4, 1] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
             style={{ transformBox: "fill-box", transformOrigin: "center" }}
           />
@@ -145,7 +147,7 @@ export default function ConnectCube({
             cx="7.5" cy="7.5" r="7.5"
             fill="#988BFF" filter="url(#cubeGlow)"
             initial={{ scale: 1 }}
-            animate={{ scale: pulse ? [1, 1.4, 1] : undefined }}
+            animate={{ scale: [1, 1.4, 1] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
             style={{ transformBox: "fill-box", transformOrigin: "center" }}
           />
@@ -208,7 +210,7 @@ export default function ConnectCube({
             cx="7.5" cy="7.5" r="7.5"
             fill="#988BFF" filter="url(#cubeGlow)"
             initial={{ scale: 1 }}
-            animate={{ scale: pulse ? [1, 1.4, 1] : undefined }}
+            animate={{ scale: [1, 1.4, 1] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             style={{ transformBox: "fill-box", transformOrigin: "center" }}
           />
@@ -259,19 +261,27 @@ export default function ConnectCube({
         <circle opacity="0.27" cx="7.5" cy="7.5" r="7.5" transform="matrix(-0.866025 0.5 0 1 242.81 224)" fill="#384C6E" />
         {/* connecting line 1 */}
         <path d={LINE1} stroke="url(#paint1_radial_2013_3342)" strokeWidth="5" strokeLinecap="round" />
-        <circle cx={0} cy={0} r={4.5} fill="#FFFFFF" filter="url(#cubeGlow)">
-          {beam && <animateMotion dur="2.4s" repeatCount="indefinite" begin="0s" path={LINE1} />}
-        </circle>
+        {
+          beam && (
+            <circle cx={0} cy={0} r={4.5} fill="#FFFFFF" filter="url(#cubeGlow)">
+              <animateMotion dur="2.4s" repeatCount="indefinite" begin="0s" path={LINE1} />
+            </circle>
+          )
+        }
         {/* connecting line 2 */}
         <path d={LINE2} stroke="url(#paint2_radial_2013_3342)" strokeWidth="5" strokeLinecap="round" />
-        <circle cx={0} cy={0} r={4.5} fill="#FFFFFF" filter="url(#cubeGlow)">
-          {beam && <animateMotion dur="2.4s" repeatCount="indefinite" begin="0.6s" path={LINE2} />}
-        </circle>
+        {
+          beam && <circle cx={0} cy={0} r={4.5} fill="#FFFFFF" filter="url(#cubeGlow)">
+            <animateMotion dur="2.4s" repeatCount="indefinite" begin="0.6s" path={LINE2} />
+          </circle>
+        }
         {/* connecting line 3 */}
         <path d={LINE3} stroke="url(#paint3_radial_2013_3342)" strokeWidth="5" strokeLinecap="round" />
-        <circle cx={0} cy={0} r={4.5} fill="#FFFFFF" filter="url(#cubeGlow)">
-          {beam && <animateMotion dur="2.4s" repeatCount="indefinite" begin="1.2s" path={LINE3} />}
-        </circle>
+        {
+          beam && <circle cx={0} cy={0} r={4.5} fill="#FFFFFF" filter="url(#cubeGlow)">
+            <animateMotion dur="2.4s" repeatCount="indefinite" begin="1.2s" path={LINE3} />
+          </circle>
+        }
         <defs>
           <filter id="cubeGlow" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="3.5" result="b" />
