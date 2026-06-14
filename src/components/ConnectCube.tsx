@@ -7,15 +7,17 @@ const LINE3 = "M235.5 179.499C238.5 154 249.5 131.5 273 114.5C296.915 97.1995 32
 
 export default function ConnectCube({
   className = "w-100 h-100",
+  colors = ["#988BFF", "#191D26", "#2A333F", "#384C6E", "#FFFFFF"],
   float = true,
   floatDistance = 20,
+  floatDelay = 0,
   beam = true,
-  colors = ["#988BFF", "#191D26", "#2A333F", "#384C6E", "#FFFFFF"]
 }: {
   className?: string
-  float?: boolean,
-  floatDistance?: number
   colors?: string[]
+  float?: boolean
+  floatDistance?: number
+  floatDelay?: number
   beam?: boolean
 }) {
   const [primary, surface, border, dot, beamColor] = colors
@@ -31,7 +33,7 @@ export default function ConnectCube({
     <motion.div
       initial={float ? { y: floatDistance } : undefined}
       animate={{ y: float ? -floatDistance : 0 }}
-      transition={{ duration: 3, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+      transition={{ duration: 3, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: floatDelay }}
       className="rounded-3xl overflow-hidden"
     >
       <svg
@@ -41,7 +43,10 @@ export default function ConnectCube({
         preserveAspectRatio="xMidYMid meet"
       >
         <rect x="127" y="58" width="178" height="119" fill={primary} />
-        <path d="M216 16L398.731 126.25H33.2686L216 16Z" fill={primary} />
+        {/* optional add more glow in the background */}
+        {/* <path d="M216 16L398.731 126.25H33.2686L216 16Z" fill={primary} /> */}
+
+        {/* blured container */}
         <foreignObject x="-71.1285" y="-96.7436" width="573.257" height="636.487"><div style={{
           backdropFilter: "blur(50px)",
           clipPath: "url(#bgblur_0_2013_3342_clip_path)",
@@ -289,33 +294,65 @@ export default function ConnectCube({
             <animateMotion dur="2.4s" repeatCount="indefinite" begin="1.2s" path={LINE3} />
           </circle>
         }
-        <defs>
-          <filter id="cubeGlow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="3.5" result="b" />
-            <feMerge>
-              <feMergeNode in="b" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-          <clipPath id="bgblur_0_2013_3342_clip_path" transform="translate(71.1285 96.7436)"><path d="M206.059 7.34668C211.879 3.89279 219.121 3.89279 224.941 7.34668L391.569 106.229C397.185 109.561 400.629 115.607 400.629 122.138V320.862C400.629 327.393 397.185 333.439 391.569 336.771L224.941 435.653C219.121 439.107 211.879 439.107 206.059 435.653L39.4307 336.771C33.8148 333.439 30.3712 327.393 30.3711 320.862V122.138C30.3712 115.607 33.8148 109.561 39.4307 106.229L206.059 7.34668Z" />
-          </clipPath><linearGradient id={`${ids.p0}`} x1="215.5" y1="0" x2="215.5" y2="443" gradientUnits="userSpaceOnUse">
-            <stop stopColor={primary} stop-opacity="0.47" />
-            <stop offset="1" stopColor={primary} stop-opacity="0.08" />
-          </linearGradient>
-          <radialGradient id={`${ids.p1}`} cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(155.5 239.5) rotate(75.0617) scale(173.973 81.1399)">
-            <stop stopColor={beamColor} />
-            <stop offset="1" stopColor={primary} />
-          </radialGradient>
-          <radialGradient id={`${ids.p2}`} cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(233.178 324.776) rotate(-13.9383) scale(173.973 81.1399)">
-            <stop stopColor={beamColor} />
-            <stop offset="1" stopColor={primary} />
-          </radialGradient>
-          <radialGradient id={`${ids.p3}`} cx="0" cy="0" r="1" gradientTransform="matrix(8.24999 52.5 -43.5765 -9.21827 268 106.5)" gradientUnits="userSpaceOnUse">
-            <stop stopColor={beamColor} />
-            <stop offset="1" stopColor={primary} />
-          </radialGradient>
-        </defs>
+        <Definations ids={ids} primary={primary} beamColor={beamColor} />
       </svg>
     </motion.div>
+  )
+}
+
+
+function Definations(
+  { ids,
+    primary,
+    beamColor
+  }:
+    {
+      ids:
+      {
+        p0: string,
+        p1: string,
+        p2: string,
+        p3: string
+      },
+      primary: string,
+      beamColor: string
+    }
+) {
+  return (
+    <defs>
+      <filter id="cubeGlow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="3.5" result="b" />
+        <feMerge>
+          <feMergeNode in="b" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+      <clipPath id="bgblur_0_2013_3342_clip_path" transform="translate(71.1285 96.7436)"><path d="M206.059 7.34668C211.879 3.89279 219.121 3.89279 224.941 7.34668L391.569 106.229C397.185 109.561 400.629 115.607 400.629 122.138V320.862C400.629 327.393 397.185 333.439 391.569 336.771L224.941 435.653C219.121 439.107 211.879 439.107 206.059 435.653L39.4307 336.771C33.8148 333.439 30.3712 327.393 30.3711 320.862V122.138C30.3712 115.607 33.8148 109.561 39.4307 106.229L206.059 7.34668Z" />
+      </clipPath>
+      {/* 
+    
+      --- gradient definitions ----
+      here you can update the colors and opacities as needed to achieve the desired visual effect.
+
+    */}
+      {/* container border gradient */}
+      <linearGradient id={`${ids.p0}`} x1="215.5" y1="0" x2="215.5" y2="443" gradientUnits="userSpaceOnUse">
+        <stop stopColor={primary} stop-opacity="0.9" />
+        <stop offset="1" stopColor={primary} stop-opacity="0.1" />
+      </linearGradient>
+      {/* connecting lines gradients */}
+      <radialGradient id={`${ids.p1}`} cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(155.5 239.5) rotate(75.0617) scale(173.973 81.1399)">
+        <stop stopColor={beamColor} />
+        <stop offset="1" stopColor={primary} />
+      </radialGradient>
+      <radialGradient id={`${ids.p2}`} cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(233.178 324.776) rotate(-13.9383) scale(173.973 81.1399)">
+        <stop stopColor={beamColor} />
+        <stop offset="1" stopColor={primary} />
+      </radialGradient>
+      <radialGradient id={`${ids.p3}`} cx="0" cy="0" r="1" gradientTransform="matrix(8.24999 52.5 -43.5765 -9.21827 268 106.5)" gradientUnits="userSpaceOnUse">
+        <stop stopColor={beamColor} />
+        <stop offset="1" stopColor={primary} />
+      </radialGradient>
+    </defs>
   )
 }

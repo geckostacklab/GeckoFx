@@ -1,1 +1,19 @@
 @import "tailwindcss";
+
+.dot-grid {
+  /* Radial gradient for the background color shift (center to edges) */
+  background-image: 
+    radial-gradient(circle at center, #1a202c 0%, #0f172a 100%),
+    radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+  
+  /* Size of the grid cells */
+  background-size: 100%, 24px 24px;
+  
+  /* Blend them together (optional, depending on your colors) */
+  background-blend-mode: overlay;
+  
+  /* Ensures it covers the entire viewport */
+  width: 100vw;
+  height: 100vh;
+}
+
