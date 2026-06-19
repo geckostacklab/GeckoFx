@@ -1,4 +1,4 @@
-import ServerStack from "./components/ServerStack"
+import ServerStack from "./components/svg/ServerStack"
 import Edges from "./components/ui/details/Edges"
 import Logo from "./components/ui/details/Logo"
 
@@ -22,7 +22,7 @@ function App() {
                   </p>
                   <button className="mt-15 border border-primary/40 px-10 py-5 relative bg-primary/10 text-[#ffa8c3] text-lg">
                     Premium SVG Components
-                    <Edges color="#FF4C85" opacity="100" />
+                    <Edges color="#FF4C85" opacity={100} />
                   </button>
                 </div>
                 <div className="mt-20">

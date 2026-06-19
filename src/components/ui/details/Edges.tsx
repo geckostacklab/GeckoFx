@@ -1,10 +1,10 @@
 import CrossAir from "./CrossAir";
 
 export default function Edges({
-  opacity = "70",
+  opacity = 50,
   color = "white",
 }: {
-  opacity?: string,
+  opacity?: number,
   color?: string
 }) {
 
