@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 
 const DEFAULT_COLORS = {
   bodyOuter: "#050505",
@@ -151,6 +151,12 @@ export default function ServerStack({
 }) {
   const c: ServerStackColors = { ...DEFAULT_COLORS, ...colors };
   const flicker = useLedFlicker(STACK_COUNT, flickerEnabled);
+  const uid = useId();
+  const filterId0 = `${uid}-filter0_f`;
+  const filterId1 = `${uid}-filter1_d`;
+  const filterId2 = `${uid}-filter2_f`;
+  const filterId3 = `${uid}-filter3_d`;
+  const filterId4 = `${uid}-filter4_f`;
 
   const ledOpacity = (i: number) => (flicker.activeStack === i ? flicker.glowOpacity : IDLE_STATE.glowOpacity);
   const stripOpacity = (i: number) => (flicker.activeStack === i ? flicker.stripOpacity : IDLE_STATE.stripOpacity);
@@ -225,7 +231,7 @@ export default function ServerStack({
           </g>
           <motion.g
             animate={{ opacity: ledOpacity(0) }}
-            filter="url(#filter0_f_2068_56)"
+            filter={`url(#${filterId0})`}
           >
             <path d="M36.2236 333.434V325.434L162.224 388.434V396.434L36.2236 333.434Z" fill={c.ledFill} />
             <path d="M36.2236 333.434V325.434L162.224 388.434V396.434L36.2236 333.434Z" stroke={c.ledStroke} />
@@ -241,7 +247,7 @@ export default function ServerStack({
 
         {/* Stack 2 (middle) */}
         <motion.g custom={1} variants={stackVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
-          <g filter="url(#filter1_d_2068_56)">
+          <g             filter={`url(#${filterId1})`}>
             <path
               d="M25.7236 213.434L174.224 286.434H231.224L379.224 213.434L380.224 246.934L231.224 320.934H174.224L25.7236 246.934V213.434Z"
               fill={c.bodyOuter}
@@ -297,7 +303,7 @@ export default function ServerStack({
             </g>
             <motion.g
               animate={{ opacity: ledOpacity(1) }}
-              filter="url(#filter2_f_2068_56)"
+              filter={`url(#${filterId2})`}
             >
               <path d="M36.2236 238.434V230.434L162.224 293.434V301.434L36.2236 238.434Z" fill={c.ledFill} />
               <path d="M36.2236 238.434V230.434L162.224 293.434V301.434L36.2236 238.434Z" stroke={c.ledStroke} />
@@ -314,7 +320,7 @@ export default function ServerStack({
 
         {/* Stack 3 (top) */}
         <motion.g custom={0} variants={stackVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
-          <g filter="url(#filter3_d_2068_56)">
+          <g             filter={`url(#${filterId3})`}>
             <path
               d="M25.3618 123.967L173.862 196.967H230.862L378.862 123.967L379.862 157.467L230.862 231.467H173.862L25.3618 157.467V123.967Z"
               fill={c.bodyOuter}
@@ -370,7 +376,7 @@ export default function ServerStack({
             </g>
             <motion.g
               animate={{ opacity: ledOpacity(2) }}
-              filter="url(#filter4_f_2068_56)"
+              filter={`url(#${filterId4})`}
             >
               <path d="M35.8618 148.967V140.967L161.862 203.967V211.967L35.8618 148.967Z" fill={c.ledFill} />
               <path d="M35.8618 148.967V140.967L161.862 203.967V211.967L35.8618 148.967Z" stroke={c.ledStroke} />
@@ -387,7 +393,7 @@ export default function ServerStack({
 
         <defs>
           <filter
-            id="filter0_f_2068_56"
+            id={filterId0}
             x="15.7236"
             y="304.625"
             width="167"
@@ -400,7 +406,7 @@ export default function ServerStack({
             <feGaussianBlur stdDeviation="10" result="effect1_foregroundBlur_2068_56" />
           </filter>
           <filter
-            id="filter1_d_2068_56"
+            id={filterId1}
             x="24.2236"
             y="106.934"
             width="356.509"
@@ -417,7 +423,7 @@ export default function ServerStack({
             <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2068_56" result="shape" />
           </filter>
           <filter
-            id="filter2_f_2068_56"
+            id={filterId2}
             x="15.7236"
             y="209.625"
             width="167"
@@ -430,7 +436,7 @@ export default function ServerStack({
             <feGaussianBlur stdDeviation="10" result="effect1_foregroundBlur_2068_56" />
           </filter>
           <filter
-            id="filter3_d_2068_56"
+            id={filterId3}
             x="23.8618"
             y="17.4669"
             width="356.509"
@@ -447,7 +453,7 @@ export default function ServerStack({
             <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2068_56" result="shape" />
           </filter>
           <filter
-            id="filter4_f_2068_56"
+            id={filterId4}
             x="15.3618"
             y="120.158"
             width="167"
