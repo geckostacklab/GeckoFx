@@ -8,6 +8,7 @@
 @theme {
   --color-line: #303030;
   --color-primary: #FF4C85;
+  --text-md: 16px;
 }
 
 
@@ -26,4 +27,12 @@
 
 @utility screen-line-bottom {
   @apply after:bg-line relative after:absolute after:bottom-0 after:left-[-100vw] after:z-1 after:h-px after:w-[200vw];
+}
+
+@utility screen-line-left {
+  @apply before:bg-line relative before:absolute before:top-[-100vh] before:left-0 before:z-1 before:w-px before:h-[300vh];
+}
+
+@utility screen-line-right {
+  @apply after:bg-line relative after:absolute after:top-[-100vh] after:right-0 after:z-1 after:w-px after:h-[300vh];
 }

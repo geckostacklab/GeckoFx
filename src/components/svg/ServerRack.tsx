@@ -13,7 +13,7 @@ const COLORS = {
   white: "white",
 } as const;
 
-export type ServerRackColors = {
+export type Colors = {
   accent: string,
   darkest: string,
   dark1: string,
@@ -37,7 +37,7 @@ export default function ServerRack({
   magnetic = false,
 }: {
   className?: string
-  colors?: Partial<ServerRackColors>
+  colors?: Partial<Colors>
   float?: boolean
   beam?: boolean,
   beamStroke?: [number, number],
