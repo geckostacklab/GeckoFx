@@ -8,6 +8,7 @@ type ButtonProps = {
   edgeWidth?: number,
   className?: string,
   style?: React.CSSProperties,
+  onClick?: () => void,
 }
 
 export default function Button({
@@ -15,7 +16,8 @@ export default function Button({
   edgeColor,
   edgeOpacity,
   edgeWidth,
-  className
+  className,
+  onClick,
 }: ButtonProps) {
   return (
     <button
@@ -25,6 +27,7 @@ export default function Button({
         'hover:bg-primary/20',
         className
       )}
+      onClick={onClick}
     >
       <Edges width={edgeWidth} color={edgeColor} opacity={edgeOpacity} />
       {children}

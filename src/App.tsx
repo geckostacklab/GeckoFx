@@ -1,9 +1,13 @@
+import { useRouter } from "@tanstack/react-router"
 import ServerStack from "./components/svg/ServerStack"
 import Edges from "./components/ui/details/Edges"
 import Logo from "./components/ui/details/Logo"
 import Margin from "./components/ui/details/Margin"
 
 function App() {
+
+  const router = useRouter();
+
   return (
     <div className="bg-black h-screen w-screen overflow-y-auto px-30 overflow-x-hidden">
       <div className="border border-y-0 border-line w-full max-w-[1300px] mx-auto h-full">
@@ -18,7 +22,12 @@ function App() {
                   <p className="text-lg mt-7 max-w-[500px] text-neutral-400">
                     Stop shipping the same gradient, the same hero section, and the same lifeless landing pages
                   </p>
-                  <button className="mt-15 border border-dashed border-primary/40 px-10 py-5 relative bg-primary/15 text-[#FF86AC] text-lg">
+                  <button
+                    onClick={() => {
+                      router.navigate({ to: "/docs/server-stack" })
+                    }}
+                    className="mt-15 border border-dashed border-primary/40 px-10 py-5 relative bg-primary/15 text-[#FF86AC] text-lg cursor-pointer hover:bg-primary/20 transition-all duration-300"
+                  >
                     Premium SVG Components
                     <Edges color="#FF4C85" opacity={100} />
                   </button>
