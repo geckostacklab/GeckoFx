@@ -29,6 +29,7 @@ export default function DocsTab({
 }: DocsTabProps) {
 
   const componentName = getComponentName(children);
+  const component = componentMap.find(c => c.name === componentName);
 
   return (
     <div>
@@ -37,12 +38,20 @@ export default function DocsTab({
       </div>
 
       <div className="flex gap-16 mt-16">
-        <div className="border border-line border-dashed p-4">
-          <h3 className="text-sm font-medium text-neutral-400 mb-2">dependency</h3>
-          <code className="text-sm text-neutral-300">bun add motion</code>
-        </div>
+        {component?.tags && (
+          <div className="border border-line border-dashed p-4 w-1/2">
+            <h3 className="text-sm font-medium text-neutral-400 mb-2">tags</h3>
+            <div className="flex flex-wrap gap-2">
+              {component.tags.map((tag) => (
+                <span key={tag} className="text-xs text-neutral-300 px-2 py-1 bg-white/5 border border-white/10 rounded">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
 
-        <div className="flex-1 border border-line border-dashed">
+        <div className="flex-1 h-fit border border-line border-dashed">
           {componentName && <DocsTable componentName={componentName} />}
         </div>
       </div>
