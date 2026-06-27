@@ -113,5 +113,16 @@ export const componentMap : ComponentMapEntry[] = [
     },
     tags: ["microphone", "ripple", "animation", "hardware", "audio"],
     category: [categories.hardware],
+  },
+  {
+    name: "RadarScan",
+    description: "a radar scanning animation with animated dots and lines",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      animation: "boolean",
+    },
+    tags: ["radar", "scan", "animation", "hardware", "infrastructure"],
+    category: [categories.infrastructure],
   }
 ]

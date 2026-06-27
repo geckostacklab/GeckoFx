@@ -17,6 +17,7 @@ import { Route as IndexRouteImport } from './routes/index'
 
 const DocsServerStackLazyRouteImport = createFileRoute('/docs/server-stack')()
 const DocsServerRackLazyRouteImport = createFileRoute('/docs/server-rack')()
+const DocsRadarScanLazyRouteImport = createFileRoute('/docs/radar-scan')()
 const DocsMicRippleLazyRouteImport = createFileRoute('/docs/mic-ripple')()
 const DocsGpuClusterLazyRouteImport = createFileRoute('/docs/gpu-cluster')()
 const DocsGpuChipLazyRouteImport = createFileRoute('/docs/gpu-chip')()
@@ -52,6 +53,13 @@ const DocsServerRackLazyRoute = DocsServerRackLazyRouteImport.update({
   getParentRoute: () => DocsRouteRoute,
 } as any).lazy(() =>
   import('./routes/docs/server-rack.lazy').then((d) => d.Route),
+)
+const DocsRadarScanLazyRoute = DocsRadarScanLazyRouteImport.update({
+  id: '/radar-scan',
+  path: '/radar-scan',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/radar-scan.lazy').then((d) => d.Route),
 )
 const DocsMicRippleLazyRoute = DocsMicRippleLazyRouteImport.update({
   id: '/mic-ripple',
@@ -102,6 +110,7 @@ export interface FileRoutesByFullPath {
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
+  '/docs/radar-scan': typeof DocsRadarScanLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
 }
@@ -115,6 +124,7 @@ export interface FileRoutesByTo {
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
+  '/docs/radar-scan': typeof DocsRadarScanLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
 }
@@ -129,6 +139,7 @@ export interface FileRoutesById {
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
+  '/docs/radar-scan': typeof DocsRadarScanLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
 }
@@ -144,6 +155,7 @@ export interface FileRouteTypes {
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
     | '/docs/mic-ripple'
+    | '/docs/radar-scan'
     | '/docs/server-rack'
     | '/docs/server-stack'
   fileRoutesByTo: FileRoutesByTo
@@ -157,6 +169,7 @@ export interface FileRouteTypes {
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
     | '/docs/mic-ripple'
+    | '/docs/radar-scan'
     | '/docs/server-rack'
     | '/docs/server-stack'
   id:
@@ -170,6 +183,7 @@ export interface FileRouteTypes {
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
     | '/docs/mic-ripple'
+    | '/docs/radar-scan'
     | '/docs/server-rack'
     | '/docs/server-stack'
   fileRoutesById: FileRoutesById
@@ -215,6 +229,13 @@ declare module '@tanstack/react-router' {
       path: '/server-rack'
       fullPath: '/docs/server-rack'
       preLoaderRoute: typeof DocsServerRackLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/radar-scan': {
+      id: '/docs/radar-scan'
+      path: '/radar-scan'
+      fullPath: '/docs/radar-scan'
+      preLoaderRoute: typeof DocsRadarScanLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
     '/docs/mic-ripple': {
@@ -269,6 +290,7 @@ interface DocsRouteRouteChildren {
   DocsGpuChipLazyRoute: typeof DocsGpuChipLazyRoute
   DocsGpuClusterLazyRoute: typeof DocsGpuClusterLazyRoute
   DocsMicRippleLazyRoute: typeof DocsMicRippleLazyRoute
+  DocsRadarScanLazyRoute: typeof DocsRadarScanLazyRoute
   DocsServerRackLazyRoute: typeof DocsServerRackLazyRoute
   DocsServerStackLazyRoute: typeof DocsServerStackLazyRoute
 }
@@ -280,6 +302,7 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsGpuChipLazyRoute: DocsGpuChipLazyRoute,
   DocsGpuClusterLazyRoute: DocsGpuClusterLazyRoute,
   DocsMicRippleLazyRoute: DocsMicRippleLazyRoute,
+  DocsRadarScanLazyRoute: DocsRadarScanLazyRoute,
   DocsServerRackLazyRoute: DocsServerRackLazyRoute,
   DocsServerStackLazyRoute: DocsServerStackLazyRoute,
 }
