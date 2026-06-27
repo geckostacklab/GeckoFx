@@ -168,7 +168,7 @@ export default function AudioChip({
             <motion.g
               id="chip"
               animate={float ? { y: [0, -5, 0] } : undefined}
-              transition={float ? { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 3 } : undefined}
+              transition={float ? { duration: 5, repeat: 10, ease: "easeInOut", delay: 3 } : undefined}
             >
               <path id="edges" d="M84.5 181.5V174.5V173.5L102 183.5H115.5L152.5 205L153 213.5L172 224.5H179.5L198 213.5L198.5 212.5L198 205L234.5 183.5H250L267 171.5V179L250 191.5H236L199 213.5V221L179.5 232H172L152 220V213L114.5 191H100L84.5 181.5Z" fill={c.chipEdges} />
               <g id="pins">
