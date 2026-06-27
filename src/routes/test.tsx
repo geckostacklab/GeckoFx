@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import AudioChip from '../components/svg/AudioChip'
+import MicRipple from '../components/svg/MicRipple'
 
 export const Route = createFileRoute('/test')({
   component: RouteComponent,
@@ -8,7 +8,7 @@ export const Route = createFileRoute('/test')({
 function RouteComponent() {
   return (
     <div className="flex justify-center items-center h-screen bg-black text-white">
-      <AudioChip />      
+      <MicRipple />
     </div>
   )
 }
