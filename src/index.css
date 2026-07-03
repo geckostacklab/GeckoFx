@@ -8,6 +8,7 @@
 @theme {
   --color-line: #303030;
   --color-primary: #FF4C85;
+  --color-secondary: #FF86AC;
   --text-md: 16px;
 }
 
@@ -35,4 +36,16 @@
 
 @utility screen-line-right {
   @apply after:bg-line relative after:absolute after:top-[-100vh] after:right-0 after:z-1 after:w-px after:h-[300vh];
+}
+
+@utility scrollbar-none {
+   -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari and Opera */
 }

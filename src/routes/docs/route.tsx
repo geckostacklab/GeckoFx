@@ -3,6 +3,8 @@ import Logo from '../../components/ui/details/Logo'
 import Margin from '../../components/ui/details/Margin'
 import { useLayoutEffect, useRef, useState } from 'react'
 import SideBar from '../../components/ui/layout/SideBar'
+import RightSideBar from '../../components/ui/layout/RightSideBar'
+import SponsorButton from '../../components/ui/SponsorButton'
 
 export const Route = createFileRoute('/docs')({
   component: DocsLayoutComponent,
@@ -33,7 +35,7 @@ function DocsLayoutComponent() {
 
         </div>
         <div className='p-4 px-8'>
-          <button>sponsor</button>
+          <SponsorButton />
         </div>
       </div>
 
@@ -53,7 +55,7 @@ function DocsLayoutComponent() {
       {/* content */}
       <div className='grid grid-cols-[20%_60%_20%] h-full'>
         <div className='pt-4'>
-          <div className='w-full overflow-y-auto px-8' style={{ height: `${height}px` }}>
+          <div className='w-full overflow-y-auto px-8 scrollbar-none' style={{ height: `${height}px` }}>
             <SideBar />
           </div>
         </div>
@@ -61,14 +63,14 @@ function DocsLayoutComponent() {
           <Margin className='h-full w-full' vertical edgesWidth={7} />
           <div ref={elementRef} className='relative h-full w-full '>
             {/* <Edges /> */}
-            <div className='w-full overflow-y-auto' style={{ height: `${height}px` }}>
+            <div className='w-full overflow-y-auto scrollbar-thin' style={{ height: `${height}px` }}>
               <Outlet />
             </div>
           </div>
           <Margin className='h-full w-full' vertical edgesWidth={7} />
         </div>
         <div className='px-4 pt-4 pl-8'>
-
+          <RightSideBar />
         </div>
       </div>
 

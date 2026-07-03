@@ -21,7 +21,7 @@ export default function SideBar() {
   }
 
   return (
-    <aside className="h-fit flex flex-col gap-8">
+    <aside className="h-fit flex flex-col gap-8 pb-16">
 
       {Array.from(grouped.entries()).map(([category, items]) => (
         <div key={category} className="pt-8">

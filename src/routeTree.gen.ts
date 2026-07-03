@@ -17,9 +17,16 @@ import { Route as IndexRouteImport } from './routes/index'
 
 const DocsServerStackLazyRouteImport = createFileRoute('/docs/server-stack')()
 const DocsServerRackLazyRouteImport = createFileRoute('/docs/server-rack')()
+const DocsRoboBrainLazyRouteImport = createFileRoute('/docs/robo-brain')()
+const DocsRadarScanLazyRouteImport = createFileRoute('/docs/radar-scan')()
+const DocsMicRippleLazyRouteImport = createFileRoute('/docs/mic-ripple')()
 const DocsGpuClusterLazyRouteImport = createFileRoute('/docs/gpu-cluster')()
 const DocsGpuChipLazyRouteImport = createFileRoute('/docs/gpu-chip')()
+const DocsGpuLazyRouteImport = createFileRoute('/docs/gpu')()
+const DocsFastZapLazyRouteImport = createFileRoute('/docs/fast-zap')()
+const DocsFastCompressLazyRouteImport = createFileRoute('/docs/fast-compress')()
 const DocsConnectCubeLazyRouteImport = createFileRoute('/docs/connect-cube')()
+const DocsAudioChipLazyRouteImport = createFileRoute('/docs/audio-chip')()
 
 const TestRoute = TestRouteImport.update({
   id: '/test',
@@ -50,6 +57,27 @@ const DocsServerRackLazyRoute = DocsServerRackLazyRouteImport.update({
 } as any).lazy(() =>
   import('./routes/docs/server-rack.lazy').then((d) => d.Route),
 )
+const DocsRoboBrainLazyRoute = DocsRoboBrainLazyRouteImport.update({
+  id: '/robo-brain',
+  path: '/robo-brain',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/robo-brain.lazy').then((d) => d.Route),
+)
+const DocsRadarScanLazyRoute = DocsRadarScanLazyRouteImport.update({
+  id: '/radar-scan',
+  path: '/radar-scan',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/radar-scan.lazy').then((d) => d.Route),
+)
+const DocsMicRippleLazyRoute = DocsMicRippleLazyRouteImport.update({
+  id: '/mic-ripple',
+  path: '/mic-ripple',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/mic-ripple.lazy').then((d) => d.Route),
+)
 const DocsGpuClusterLazyRoute = DocsGpuClusterLazyRouteImport.update({
   id: '/gpu-cluster',
   path: '/gpu-cluster',
@@ -62,6 +90,23 @@ const DocsGpuChipLazyRoute = DocsGpuChipLazyRouteImport.update({
   path: '/gpu-chip',
   getParentRoute: () => DocsRouteRoute,
 } as any).lazy(() => import('./routes/docs/gpu-chip.lazy').then((d) => d.Route))
+const DocsGpuLazyRoute = DocsGpuLazyRouteImport.update({
+  id: '/gpu',
+  path: '/gpu',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() => import('./routes/docs/gpu.lazy').then((d) => d.Route))
+const DocsFastZapLazyRoute = DocsFastZapLazyRouteImport.update({
+  id: '/fast-zap',
+  path: '/fast-zap',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() => import('./routes/docs/fast-zap.lazy').then((d) => d.Route))
+const DocsFastCompressLazyRoute = DocsFastCompressLazyRouteImport.update({
+  id: '/fast-compress',
+  path: '/fast-compress',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/fast-compress.lazy').then((d) => d.Route),
+)
 const DocsConnectCubeLazyRoute = DocsConnectCubeLazyRouteImport.update({
   id: '/connect-cube',
   path: '/connect-cube',
@@ -69,14 +114,28 @@ const DocsConnectCubeLazyRoute = DocsConnectCubeLazyRouteImport.update({
 } as any).lazy(() =>
   import('./routes/docs/connect-cube.lazy').then((d) => d.Route),
 )
+const DocsAudioChipLazyRoute = DocsAudioChipLazyRouteImport.update({
+  id: '/audio-chip',
+  path: '/audio-chip',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/audio-chip.lazy').then((d) => d.Route),
+)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
   '/test': typeof TestRoute
+  '/docs/audio-chip': typeof DocsAudioChipLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
+  '/docs/fast-compress': typeof DocsFastCompressLazyRoute
+  '/docs/fast-zap': typeof DocsFastZapLazyRoute
+  '/docs/gpu': typeof DocsGpuLazyRoute
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
+  '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
+  '/docs/radar-scan': typeof DocsRadarScanLazyRoute
+  '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
 }
@@ -84,9 +143,16 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
   '/test': typeof TestRoute
+  '/docs/audio-chip': typeof DocsAudioChipLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
+  '/docs/fast-compress': typeof DocsFastCompressLazyRoute
+  '/docs/fast-zap': typeof DocsFastZapLazyRoute
+  '/docs/gpu': typeof DocsGpuLazyRoute
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
+  '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
+  '/docs/radar-scan': typeof DocsRadarScanLazyRoute
+  '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
 }
@@ -95,9 +161,16 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
   '/test': typeof TestRoute
+  '/docs/audio-chip': typeof DocsAudioChipLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
+  '/docs/fast-compress': typeof DocsFastCompressLazyRoute
+  '/docs/fast-zap': typeof DocsFastZapLazyRoute
+  '/docs/gpu': typeof DocsGpuLazyRoute
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
+  '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
+  '/docs/radar-scan': typeof DocsRadarScanLazyRoute
+  '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
 }
@@ -107,9 +180,16 @@ export interface FileRouteTypes {
     | '/'
     | '/docs'
     | '/test'
+    | '/docs/audio-chip'
     | '/docs/connect-cube'
+    | '/docs/fast-compress'
+    | '/docs/fast-zap'
+    | '/docs/gpu'
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
+    | '/docs/mic-ripple'
+    | '/docs/radar-scan'
+    | '/docs/robo-brain'
     | '/docs/server-rack'
     | '/docs/server-stack'
   fileRoutesByTo: FileRoutesByTo
@@ -117,9 +197,16 @@ export interface FileRouteTypes {
     | '/'
     | '/docs'
     | '/test'
+    | '/docs/audio-chip'
     | '/docs/connect-cube'
+    | '/docs/fast-compress'
+    | '/docs/fast-zap'
+    | '/docs/gpu'
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
+    | '/docs/mic-ripple'
+    | '/docs/radar-scan'
+    | '/docs/robo-brain'
     | '/docs/server-rack'
     | '/docs/server-stack'
   id:
@@ -127,9 +214,16 @@ export interface FileRouteTypes {
     | '/'
     | '/docs'
     | '/test'
+    | '/docs/audio-chip'
     | '/docs/connect-cube'
+    | '/docs/fast-compress'
+    | '/docs/fast-zap'
+    | '/docs/gpu'
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
+    | '/docs/mic-ripple'
+    | '/docs/radar-scan'
+    | '/docs/robo-brain'
     | '/docs/server-rack'
     | '/docs/server-stack'
   fileRoutesById: FileRoutesById
@@ -177,6 +271,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsServerRackLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/robo-brain': {
+      id: '/docs/robo-brain'
+      path: '/robo-brain'
+      fullPath: '/docs/robo-brain'
+      preLoaderRoute: typeof DocsRoboBrainLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/radar-scan': {
+      id: '/docs/radar-scan'
+      path: '/radar-scan'
+      fullPath: '/docs/radar-scan'
+      preLoaderRoute: typeof DocsRadarScanLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/mic-ripple': {
+      id: '/docs/mic-ripple'
+      path: '/mic-ripple'
+      fullPath: '/docs/mic-ripple'
+      preLoaderRoute: typeof DocsMicRippleLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
     '/docs/gpu-cluster': {
       id: '/docs/gpu-cluster'
       path: '/gpu-cluster'
@@ -191,6 +306,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsGpuChipLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/gpu': {
+      id: '/docs/gpu'
+      path: '/gpu'
+      fullPath: '/docs/gpu'
+      preLoaderRoute: typeof DocsGpuLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/fast-zap': {
+      id: '/docs/fast-zap'
+      path: '/fast-zap'
+      fullPath: '/docs/fast-zap'
+      preLoaderRoute: typeof DocsFastZapLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/fast-compress': {
+      id: '/docs/fast-compress'
+      path: '/fast-compress'
+      fullPath: '/docs/fast-compress'
+      preLoaderRoute: typeof DocsFastCompressLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
     '/docs/connect-cube': {
       id: '/docs/connect-cube'
       path: '/connect-cube'
@@ -198,21 +334,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsConnectCubeLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/audio-chip': {
+      id: '/docs/audio-chip'
+      path: '/audio-chip'
+      fullPath: '/docs/audio-chip'
+      preLoaderRoute: typeof DocsAudioChipLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
   }
 }
 
 interface DocsRouteRouteChildren {
+  DocsAudioChipLazyRoute: typeof DocsAudioChipLazyRoute
   DocsConnectCubeLazyRoute: typeof DocsConnectCubeLazyRoute
+  DocsFastCompressLazyRoute: typeof DocsFastCompressLazyRoute
+  DocsFastZapLazyRoute: typeof DocsFastZapLazyRoute
+  DocsGpuLazyRoute: typeof DocsGpuLazyRoute
   DocsGpuChipLazyRoute: typeof DocsGpuChipLazyRoute
   DocsGpuClusterLazyRoute: typeof DocsGpuClusterLazyRoute
+  DocsMicRippleLazyRoute: typeof DocsMicRippleLazyRoute
+  DocsRadarScanLazyRoute: typeof DocsRadarScanLazyRoute
+  DocsRoboBrainLazyRoute: typeof DocsRoboBrainLazyRoute
   DocsServerRackLazyRoute: typeof DocsServerRackLazyRoute
   DocsServerStackLazyRoute: typeof DocsServerStackLazyRoute
 }
 
 const DocsRouteRouteChildren: DocsRouteRouteChildren = {
+  DocsAudioChipLazyRoute: DocsAudioChipLazyRoute,
   DocsConnectCubeLazyRoute: DocsConnectCubeLazyRoute,
+  DocsFastCompressLazyRoute: DocsFastCompressLazyRoute,
+  DocsFastZapLazyRoute: DocsFastZapLazyRoute,
+  DocsGpuLazyRoute: DocsGpuLazyRoute,
   DocsGpuChipLazyRoute: DocsGpuChipLazyRoute,
   DocsGpuClusterLazyRoute: DocsGpuClusterLazyRoute,
+  DocsMicRippleLazyRoute: DocsMicRippleLazyRoute,
+  DocsRadarScanLazyRoute: DocsRadarScanLazyRoute,
+  DocsRoboBrainLazyRoute: DocsRoboBrainLazyRoute,
   DocsServerRackLazyRoute: DocsServerRackLazyRoute,
   DocsServerStackLazyRoute: DocsServerStackLazyRoute,
 }
