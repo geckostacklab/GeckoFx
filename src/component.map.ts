@@ -166,5 +166,17 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["robotic", "brain", "animation", "hardware", "ai"],
     category: [categories.hardware, categories.ai],
+  },
+  {
+    name: "Clock",
+    description: "a clock animation with animated hands and rotation effects",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      animate: "boolean",
+      rotationSpeed: "number",
+    },
+    tags: ["clock", "animation", "hardware", "effects"],
+    category: [categories.hardware],
   }
 ]
