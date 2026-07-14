@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import Clock from '../components/svg/Clock'
 import { ArrowUpRightIcon } from '@phosphor-icons/react'
+import IsometricCamera from '../components/svg/IsometricCamera'
 
 export const Route = createFileRoute('/test')({
   component: RouteComponent,
@@ -12,11 +13,15 @@ function RouteComponent() {
       <p className='font-mono flex gap-4 '>
         <code className='font-semibold text-purple-500 text-lg'>{`<Clock />`}</code> available in
         <span className="flex gap-2">
-          <a href="https://geckofx.geckostack.store" target="_blank" rel="noopener noreferrer" className="text-purple-500 hover:underline">geckofx.geckostack.store</a> 
+          <a href="https://geckofx.geckostack.store" target="_blank" rel="noopener noreferrer" className="text-purple-500 hover:underline">geckofx.geckostack.store</a>
           <ArrowUpRightIcon size={20} weight="bold" className="text-purple-500" />
         </span>
       </p>
-      <Clock />
+      <div className="flex gap-20">
+        <Clock />
+        <IsometricCamera />
+        <ArrowUpRightIcon />
+      </div>
     </div>
   )
 }

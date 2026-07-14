@@ -20,6 +20,9 @@ const DocsServerRackLazyRouteImport = createFileRoute('/docs/server-rack')()
 const DocsRoboBrainLazyRouteImport = createFileRoute('/docs/robo-brain')()
 const DocsRadarScanLazyRouteImport = createFileRoute('/docs/radar-scan')()
 const DocsMicRippleLazyRouteImport = createFileRoute('/docs/mic-ripple')()
+const DocsIsometricCameraLazyRouteImport = createFileRoute(
+  '/docs/isometric-camera',
+)()
 const DocsGpuClusterLazyRouteImport = createFileRoute('/docs/gpu-cluster')()
 const DocsGpuChipLazyRouteImport = createFileRoute('/docs/gpu-chip')()
 const DocsGpuLazyRouteImport = createFileRoute('/docs/gpu')()
@@ -28,6 +31,9 @@ const DocsFastCompressLazyRouteImport = createFileRoute('/docs/fast-compress')()
 const DocsConnectCubeLazyRouteImport = createFileRoute('/docs/connect-cube')()
 const DocsClockLazyRouteImport = createFileRoute('/docs/clock')()
 const DocsAudioChipLazyRouteImport = createFileRoute('/docs/audio-chip')()
+const DocsArrowInCubicLatticeLazyRouteImport = createFileRoute(
+  '/docs/arrow-in-cubic-lattice',
+)()
 
 const TestRoute = TestRouteImport.update({
   id: '/test',
@@ -79,6 +85,13 @@ const DocsMicRippleLazyRoute = DocsMicRippleLazyRouteImport.update({
 } as any).lazy(() =>
   import('./routes/docs/mic-ripple.lazy').then((d) => d.Route),
 )
+const DocsIsometricCameraLazyRoute = DocsIsometricCameraLazyRouteImport.update({
+  id: '/isometric-camera',
+  path: '/isometric-camera',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/isometric-camera.lazy').then((d) => d.Route),
+)
 const DocsGpuClusterLazyRoute = DocsGpuClusterLazyRouteImport.update({
   id: '/gpu-cluster',
   path: '/gpu-cluster',
@@ -127,11 +140,20 @@ const DocsAudioChipLazyRoute = DocsAudioChipLazyRouteImport.update({
 } as any).lazy(() =>
   import('./routes/docs/audio-chip.lazy').then((d) => d.Route),
 )
+const DocsArrowInCubicLatticeLazyRoute =
+  DocsArrowInCubicLatticeLazyRouteImport.update({
+    id: '/arrow-in-cubic-lattice',
+    path: '/arrow-in-cubic-lattice',
+    getParentRoute: () => DocsRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/docs/arrow-in-cubic-lattice.lazy').then((d) => d.Route),
+  )
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
   '/test': typeof TestRoute
+  '/docs/arrow-in-cubic-lattice': typeof DocsArrowInCubicLatticeLazyRoute
   '/docs/audio-chip': typeof DocsAudioChipLazyRoute
   '/docs/clock': typeof DocsClockLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
@@ -140,6 +162,7 @@ export interface FileRoutesByFullPath {
   '/docs/gpu': typeof DocsGpuLazyRoute
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
+  '/docs/isometric-camera': typeof DocsIsometricCameraLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
@@ -150,6 +173,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
   '/test': typeof TestRoute
+  '/docs/arrow-in-cubic-lattice': typeof DocsArrowInCubicLatticeLazyRoute
   '/docs/audio-chip': typeof DocsAudioChipLazyRoute
   '/docs/clock': typeof DocsClockLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
@@ -158,6 +182,7 @@ export interface FileRoutesByTo {
   '/docs/gpu': typeof DocsGpuLazyRoute
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
+  '/docs/isometric-camera': typeof DocsIsometricCameraLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
@@ -169,6 +194,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
   '/test': typeof TestRoute
+  '/docs/arrow-in-cubic-lattice': typeof DocsArrowInCubicLatticeLazyRoute
   '/docs/audio-chip': typeof DocsAudioChipLazyRoute
   '/docs/clock': typeof DocsClockLazyRoute
   '/docs/connect-cube': typeof DocsConnectCubeLazyRoute
@@ -177,6 +203,7 @@ export interface FileRoutesById {
   '/docs/gpu': typeof DocsGpuLazyRoute
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
   '/docs/gpu-cluster': typeof DocsGpuClusterLazyRoute
+  '/docs/isometric-camera': typeof DocsIsometricCameraLazyRoute
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
@@ -189,6 +216,7 @@ export interface FileRouteTypes {
     | '/'
     | '/docs'
     | '/test'
+    | '/docs/arrow-in-cubic-lattice'
     | '/docs/audio-chip'
     | '/docs/clock'
     | '/docs/connect-cube'
@@ -197,6 +225,7 @@ export interface FileRouteTypes {
     | '/docs/gpu'
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
+    | '/docs/isometric-camera'
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
     | '/docs/robo-brain'
@@ -207,6 +236,7 @@ export interface FileRouteTypes {
     | '/'
     | '/docs'
     | '/test'
+    | '/docs/arrow-in-cubic-lattice'
     | '/docs/audio-chip'
     | '/docs/clock'
     | '/docs/connect-cube'
@@ -215,6 +245,7 @@ export interface FileRouteTypes {
     | '/docs/gpu'
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
+    | '/docs/isometric-camera'
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
     | '/docs/robo-brain'
@@ -225,6 +256,7 @@ export interface FileRouteTypes {
     | '/'
     | '/docs'
     | '/test'
+    | '/docs/arrow-in-cubic-lattice'
     | '/docs/audio-chip'
     | '/docs/clock'
     | '/docs/connect-cube'
@@ -233,6 +265,7 @@ export interface FileRouteTypes {
     | '/docs/gpu'
     | '/docs/gpu-chip'
     | '/docs/gpu-cluster'
+    | '/docs/isometric-camera'
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
     | '/docs/robo-brain'
@@ -304,6 +337,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsMicRippleLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/isometric-camera': {
+      id: '/docs/isometric-camera'
+      path: '/isometric-camera'
+      fullPath: '/docs/isometric-camera'
+      preLoaderRoute: typeof DocsIsometricCameraLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
     '/docs/gpu-cluster': {
       id: '/docs/gpu-cluster'
       path: '/gpu-cluster'
@@ -360,10 +400,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsAudioChipLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/arrow-in-cubic-lattice': {
+      id: '/docs/arrow-in-cubic-lattice'
+      path: '/arrow-in-cubic-lattice'
+      fullPath: '/docs/arrow-in-cubic-lattice'
+      preLoaderRoute: typeof DocsArrowInCubicLatticeLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
   }
 }
 
 interface DocsRouteRouteChildren {
+  DocsArrowInCubicLatticeLazyRoute: typeof DocsArrowInCubicLatticeLazyRoute
   DocsAudioChipLazyRoute: typeof DocsAudioChipLazyRoute
   DocsClockLazyRoute: typeof DocsClockLazyRoute
   DocsConnectCubeLazyRoute: typeof DocsConnectCubeLazyRoute
@@ -372,6 +420,7 @@ interface DocsRouteRouteChildren {
   DocsGpuLazyRoute: typeof DocsGpuLazyRoute
   DocsGpuChipLazyRoute: typeof DocsGpuChipLazyRoute
   DocsGpuClusterLazyRoute: typeof DocsGpuClusterLazyRoute
+  DocsIsometricCameraLazyRoute: typeof DocsIsometricCameraLazyRoute
   DocsMicRippleLazyRoute: typeof DocsMicRippleLazyRoute
   DocsRadarScanLazyRoute: typeof DocsRadarScanLazyRoute
   DocsRoboBrainLazyRoute: typeof DocsRoboBrainLazyRoute
@@ -380,6 +429,7 @@ interface DocsRouteRouteChildren {
 }
 
 const DocsRouteRouteChildren: DocsRouteRouteChildren = {
+  DocsArrowInCubicLatticeLazyRoute: DocsArrowInCubicLatticeLazyRoute,
   DocsAudioChipLazyRoute: DocsAudioChipLazyRoute,
   DocsClockLazyRoute: DocsClockLazyRoute,
   DocsConnectCubeLazyRoute: DocsConnectCubeLazyRoute,
@@ -388,6 +438,7 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsGpuLazyRoute: DocsGpuLazyRoute,
   DocsGpuChipLazyRoute: DocsGpuChipLazyRoute,
   DocsGpuClusterLazyRoute: DocsGpuClusterLazyRoute,
+  DocsIsometricCameraLazyRoute: DocsIsometricCameraLazyRoute,
   DocsMicRippleLazyRoute: DocsMicRippleLazyRoute,
   DocsRadarScanLazyRoute: DocsRadarScanLazyRoute,
   DocsRoboBrainLazyRoute: DocsRoboBrainLazyRoute,

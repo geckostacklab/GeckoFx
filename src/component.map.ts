@@ -178,5 +178,31 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["clock", "animation", "hardware", "effects"],
     category: [categories.hardware],
+  },
+  {
+    name: "IsometricCamera",
+    description: "an isometric camera with a blinking LED indicator for a live recording effect",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      animate: "boolean",
+      blinkSpeed: "number",
+    },
+    tags: ["camera", "recording", "isometric", "led", "animation", "hardware"],
+    category: [categories.hardware],
+  },
+  {
+    name: "ArrowInCubicLattice",
+    description: "an arrow inside a cubic lattice structure, representing direction and movement within a 3D space",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      float: "boolean",
+      floatDistance: "number",
+      floatDelay: "number",
+      magnetic: "boolean",
+    },
+    tags: ["arrow", "cubic lattice", "3D", "animation", "effects"],
+    category: [categories.effects],
   }
 ]
