@@ -8,7 +8,7 @@ const DEFAULT_COLORS = {
   frameHighlightBright: "white",
   accent: "white",
   led: "#53070F",
-  ledGlow: "#FF1A2E",
+  ledGlow: "#FF001A",
   lensGradientStart: "#BFBFBF",
   lensGradientEnd: "#595959",
   lensGlareStart: "#0B0102",
@@ -42,7 +42,7 @@ export default function IsometricCamera({
   const paint3Id = `${uid}-paint3`
   const paint4Id = `${uid}-paint4`
   const paint5Id = `${uid}-paint5`
-  const ledGlowId = `${uid}-ledGlow`
+  const ledGlowFilterId = `${uid}-ledGlowFilter`
 
   return (
     <div>
@@ -65,21 +65,19 @@ export default function IsometricCamera({
           </g>
           <g id="camera-buttons">
             <path d="M52.0845 223.293C62.6214 229.377 71.2208 245.04 71.2208 258.322C71.2208 271.604 62.6215 277.338 52.0845 271.254C41.5475 265.171 32.9474 249.507 32.9474 236.225C32.9474 222.942 41.5475 217.21 52.0845 223.293Z" stroke={c.accent} />
-            <motion.ellipse
+            <path id="indicator-led" d="M367.078 101.328C371.736 98.6388 375.57 101.162 375.57 107.09C375.57 113.019 371.736 119.968 367.078 122.658C362.42 125.348 358.585 122.825 358.585 116.896C358.585 110.968 362.42 104.017 367.078 101.328Z" fill={c.led} stroke={c.accent} />
+            <motion.g
               id="indicator-led-glow"
-              cx="367"
-              cy="112"
-              rx="14"
-              ry="14"
-              fill={`url(#${ledGlowId})`}
+              filter={`url(#${ledGlowFilterId})`}
               animate={animate ? { opacity: [0.3, 1, 0.3] } : { opacity: 0.8 }}
               transition={
                 animate
                   ? { duration: blinkSpeed, repeat: Infinity, ease: "easeInOut" }
                   : undefined
               }
-            />
-            <path id="indicator-led" d="M367.078 101.328C371.736 98.6388 375.57 101.162 375.57 107.09C375.57 113.019 371.736 119.968 367.078 122.658C362.42 125.348 358.585 122.825 358.585 116.896C358.585 110.968 362.42 104.017 367.078 101.328Z" fill={c.led} stroke={c.accent} />
+            >
+              <ellipse cx="10.3063" cy="11.1652" rx="10.3063" ry="11.1652" transform="matrix(0.866025 -0.5 0 1 358.152 105.981)" fill={c.ledGlow} />
+            </motion.g>
             <path d="M52.0845 392.773C62.6214 398.857 71.2208 414.52 71.2208 427.802C71.2208 441.085 62.6215 446.818 52.0845 440.734C41.5475 434.651 32.9474 418.988 32.9474 405.705C32.9474 392.423 41.5475 386.69 52.0845 392.773Z" stroke={c.accent} />
             <rect width="15.0649" height="75.3247" rx="3" transform="matrix(0.866025 0.5 0 1 47.5794 294.352)" fill={c.accent} />
             <rect width="15.0649" height="46.9748" rx="3" transform="matrix(0.866025 0.5 0 1 47.5794 294.352)" fill={c.led} fillOpacity="0.52" />
@@ -126,11 +124,19 @@ export default function IsometricCamera({
             <stop stopColor={c.lensGlareStrokeStart} />
             <stop offset="1" stopColor={c.lensGlareStrokeEnd} />
           </linearGradient>
-          <radialGradient id={ledGlowId} cx="367" cy="112" r="14" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stopColor={c.ledGlow} stopOpacity="1" />
-            <stop offset="0.4" stopColor={c.ledGlow} stopOpacity="0.6" />
-            <stop offset="1" stopColor={c.ledGlow} stopOpacity="0" />
-          </radialGradient>
+          <filter
+            id={ledGlowFilterId}
+            x="338.152"
+            y="79.6934"
+            width="57.8511"
+            height="64.6"
+            filterUnits="userSpaceOnUse"
+            colorInterpolationFilters="sRGB"
+          >
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
+            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+            <feGaussianBlur stdDeviation="10" />
+          </filter>
         </defs>
       </svg>
     </div>
