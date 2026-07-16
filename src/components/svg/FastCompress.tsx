@@ -187,27 +187,7 @@ export default function FastCompress({
               />
             ))}
           </g>
-          <motion.g
-            id="bg-glow"
-            animate={
-              animation
-                ? {
-                  scale: [1, 1, 1.05, 1.02, 1],
-                  opacity: [0.8, 0.8, 1, 0.9, 0.8],
-                }
-                : { scale: 1, opacity: 0.85 }
-            }
-            transition={{
-              duration: vortexCycle,
-              times: [0, 0.65, 0.8, 0.9, 1],
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            style={{
-              transformOrigin: "556.194px 186.424px",
-              transformBox: "view-box",
-            }}
-          >
+          <g id="bg-glow">
             <g filter={`url(#${u("filter0")})`}>
               <path d={STAR1_D} fill={c.star} />
             </g>
@@ -223,7 +203,7 @@ export default function FastCompress({
             <g filter={`url(#${u("filter4")})`}>
               <circle cx="536.794" cy="180.166" r="17.5544" fill={c.starCore} />
             </g>
-          </motion.g>
+          </g>
           <g id="vortex">
             {VORTEX_LINES.map((line, i) => (
               <g key={i}>
