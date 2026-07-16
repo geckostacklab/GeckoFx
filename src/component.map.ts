@@ -216,5 +216,18 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["folder", "frosted glass", "file storage", "organization", "animation"],
     category: [categories.icons],
+  },
+  {
+    name: "SolanaTokens",
+    description: "two mirrored Solana coins with floating animation and twinkling sparkles",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      animate: "boolean",
+      floatSpeed: "number",
+      sparkleSpeed: "number",
+    },
+    tags: ["solana", "tokens", "crypto", "coins", "animation", "web3"],
+    category: [categories.web3],
   }
 ]

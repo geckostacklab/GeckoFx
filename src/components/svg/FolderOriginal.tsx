@@ -8,9 +8,12 @@ export default function FolderOriginal() {
           </g>
           <g id="pages-groped">
             <g id="page">
-              <g id="Rectangle 2" filter="url(#filter1_i_2174_69)">
+              {/* <g id="Rectangle 2" filter="url(#filter1_i_2174_69)">
                 <rect x="195.643" y="17.3102" width="221.077" height="288" rx="24" transform="rotate(16 195.643 17.3102)" fill="url(#paint1_linear_2174_69)" />
-              </g>
+              </g> */}
+              <foreignObject x="195.643" y="17.3102" width="221.077" height="288" rx="24" transform="rotate(16 195.643 17.3102)">
+                <div className="w-full h-full bg-[#EFEFF7] rounded-3xl ring-4 ring-inset ring-white" />
+              </foreignObject>
               <g id="page-text">
                 <rect id="Rectangle 3" x="215.208" y="60.371" width="158.667" height="15" rx="7.5" transform="rotate(16 215.208 60.371)" fill="url(#paint2_linear_2174_69)" />
                 <rect id="Rectangle 4" x="200.875" y="110.357" width="158.667" height="8" rx="4" transform="rotate(16 200.875 110.357)" fill="url(#paint3_linear_2174_69)" />
@@ -23,9 +26,12 @@ export default function FolderOriginal() {
               </g>
             </g>
             <g id="page_2">
-              <g id="Rectangle 2_2" filter="url(#filter2_i_2174_69)">
+              {/* <g id="Rectangle 2_2" filter="url(#filter2_i_2174_69)">
                 <rect x="113.26" y="34.3102" width="221.077" height="288" rx="24" fill="url(#paint10_linear_2174_69)" />
-              </g>
+              </g> */}
+              <foreignObject x="113.26" y="34.3102" width="221.077" height="288" rx="24">
+                <div className="w-full h-full bg-[#EFEFF7] rounded-3xl ring-4 ring-inset ring-white" />
+              </foreignObject>
               <g id="page-text_2">
                 <rect id="Rectangle 3_2" x="143.936" y="70.3102" width="158.667" height="15" rx="7.5" fill="url(#paint11_linear_2174_69)" />
                 <rect id="Rectangle 4_2" x="143.936" y="122.31" width="158.667" height="8" rx="4" fill="url(#paint12_linear_2174_69)" />
@@ -38,9 +44,12 @@ export default function FolderOriginal() {
               </g>
             </g>
             <g id="page_3">
-              <g id="Rectangle 2_3" filter="url(#filter3_i_2174_69)">
+              {/* <g id="Rectangle 2_3" filter="url(#filter3_i_2174_69)">
                 <rect x="42" y="60.937" width="221.077" height="288" rx="24" transform="rotate(-16 42 60.937)" fill="url(#paint19_linear_2174_69)" />
-              </g>
+              </g> */}
+              <foreignObject x="42" y="60.937" width="221.077" height="288" rx="24" transform="rotate(-16 42 60.937)">
+                <div className="w-full h-full bg-[#EFEFF7] rounded-3xl ring-4 ring-inset ring-white" />
+              </foreignObject>
               <g id="page-text_3">
                 <rect id="Rectangle 3_3" x="81.4104" y="87.087" width="158.667" height="15" rx="7.5" transform="rotate(-16 81.4104 87.087)" fill="url(#paint20_linear_2174_69)" />
                 <rect id="Rectangle 4_3" x="95.7435" y="137.073" width="158.667" height="8" rx="4" transform="rotate(-16 95.7435 137.073)" fill="url(#paint21_linear_2174_69)" />

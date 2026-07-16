@@ -15,6 +15,7 @@ import { Route as TestRouteImport } from './routes/test'
 import { Route as DocsRouteRouteImport } from './routes/docs/route'
 import { Route as IndexRouteImport } from './routes/index'
 
+const DocsSolanaTokensLazyRouteImport = createFileRoute('/docs/solana-tokens')()
 const DocsServerStackLazyRouteImport = createFileRoute('/docs/server-stack')()
 const DocsServerRackLazyRouteImport = createFileRoute('/docs/server-rack')()
 const DocsRoboBrainLazyRouteImport = createFileRoute('/docs/robo-brain')()
@@ -51,6 +52,13 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DocsSolanaTokensLazyRoute = DocsSolanaTokensLazyRouteImport.update({
+  id: '/solana-tokens',
+  path: '/solana-tokens',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/solana-tokens.lazy').then((d) => d.Route),
+)
 const DocsServerStackLazyRoute = DocsServerStackLazyRouteImport.update({
   id: '/server-stack',
   path: '/server-stack',
@@ -175,6 +183,7 @@ export interface FileRoutesByFullPath {
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
+  '/docs/solana-tokens': typeof DocsSolanaTokensLazyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -196,6 +205,7 @@ export interface FileRoutesByTo {
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
+  '/docs/solana-tokens': typeof DocsSolanaTokensLazyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -218,6 +228,7 @@ export interface FileRoutesById {
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
+  '/docs/solana-tokens': typeof DocsSolanaTokensLazyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -241,6 +252,7 @@ export interface FileRouteTypes {
     | '/docs/robo-brain'
     | '/docs/server-rack'
     | '/docs/server-stack'
+    | '/docs/solana-tokens'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -262,6 +274,7 @@ export interface FileRouteTypes {
     | '/docs/robo-brain'
     | '/docs/server-rack'
     | '/docs/server-stack'
+    | '/docs/solana-tokens'
   id:
     | '__root__'
     | '/'
@@ -283,6 +296,7 @@ export interface FileRouteTypes {
     | '/docs/robo-brain'
     | '/docs/server-rack'
     | '/docs/server-stack'
+    | '/docs/solana-tokens'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -313,6 +327,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/docs/solana-tokens': {
+      id: '/docs/solana-tokens'
+      path: '/solana-tokens'
+      fullPath: '/docs/solana-tokens'
+      preLoaderRoute: typeof DocsSolanaTokensLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
     }
     '/docs/server-stack': {
       id: '/docs/server-stack'
@@ -446,6 +467,7 @@ interface DocsRouteRouteChildren {
   DocsRoboBrainLazyRoute: typeof DocsRoboBrainLazyRoute
   DocsServerRackLazyRoute: typeof DocsServerRackLazyRoute
   DocsServerStackLazyRoute: typeof DocsServerStackLazyRoute
+  DocsSolanaTokensLazyRoute: typeof DocsSolanaTokensLazyRoute
 }
 
 const DocsRouteRouteChildren: DocsRouteRouteChildren = {
@@ -465,6 +487,7 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsRoboBrainLazyRoute: DocsRoboBrainLazyRoute,
   DocsServerRackLazyRoute: DocsServerRackLazyRoute,
   DocsServerStackLazyRoute: DocsServerStackLazyRoute,
+  DocsSolanaTokensLazyRoute: DocsSolanaTokensLazyRoute,
 }
 
 const DocsRouteRouteWithChildren = DocsRouteRoute._addFileChildren(
