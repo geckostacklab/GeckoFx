@@ -49,8 +49,8 @@ export default function MechanicalKey({
   colors,
   animate = true,
   staggerDelay = 0.2,
-  initialDelay = 0.7,
-  duration = 1.5,
+  initialDelay = 0.3,
+  duration = 0.9,
 }: Props) {
   const c = { ...DEFAULT_COLORS, ...colors }
   const uid = useId()
