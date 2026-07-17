@@ -18,6 +18,7 @@ import { Route as IndexRouteImport } from './routes/index'
 const DocsSolanaTokensLazyRouteImport = createFileRoute('/docs/solana-tokens')()
 const DocsServerStackLazyRouteImport = createFileRoute('/docs/server-stack')()
 const DocsServerRackLazyRouteImport = createFileRoute('/docs/server-rack')()
+const DocsSatelliteLazyRouteImport = createFileRoute('/docs/satellite')()
 const DocsRoboBrainLazyRouteImport = createFileRoute('/docs/robo-brain')()
 const DocsRadarScanLazyRouteImport = createFileRoute('/docs/radar-scan')()
 const DocsMicRippleLazyRouteImport = createFileRoute('/docs/mic-ripple')()
@@ -78,6 +79,13 @@ const DocsServerRackLazyRoute = DocsServerRackLazyRouteImport.update({
   getParentRoute: () => DocsRouteRoute,
 } as any).lazy(() =>
   import('./routes/docs/server-rack.lazy').then((d) => d.Route),
+)
+const DocsSatelliteLazyRoute = DocsSatelliteLazyRouteImport.update({
+  id: '/satellite',
+  path: '/satellite',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/satellite.lazy').then((d) => d.Route),
 )
 const DocsRoboBrainLazyRoute = DocsRoboBrainLazyRouteImport.update({
   id: '/robo-brain',
@@ -203,6 +211,7 @@ export interface FileRoutesByFullPath {
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
+  '/docs/satellite': typeof DocsSatelliteLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
   '/docs/solana-tokens': typeof DocsSolanaTokensLazyRoute
@@ -227,6 +236,7 @@ export interface FileRoutesByTo {
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
+  '/docs/satellite': typeof DocsSatelliteLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
   '/docs/solana-tokens': typeof DocsSolanaTokensLazyRoute
@@ -252,6 +262,7 @@ export interface FileRoutesById {
   '/docs/mic-ripple': typeof DocsMicRippleLazyRoute
   '/docs/radar-scan': typeof DocsRadarScanLazyRoute
   '/docs/robo-brain': typeof DocsRoboBrainLazyRoute
+  '/docs/satellite': typeof DocsSatelliteLazyRoute
   '/docs/server-rack': typeof DocsServerRackLazyRoute
   '/docs/server-stack': typeof DocsServerStackLazyRoute
   '/docs/solana-tokens': typeof DocsSolanaTokensLazyRoute
@@ -278,6 +289,7 @@ export interface FileRouteTypes {
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
     | '/docs/robo-brain'
+    | '/docs/satellite'
     | '/docs/server-rack'
     | '/docs/server-stack'
     | '/docs/solana-tokens'
@@ -302,6 +314,7 @@ export interface FileRouteTypes {
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
     | '/docs/robo-brain'
+    | '/docs/satellite'
     | '/docs/server-rack'
     | '/docs/server-stack'
     | '/docs/solana-tokens'
@@ -326,6 +339,7 @@ export interface FileRouteTypes {
     | '/docs/mic-ripple'
     | '/docs/radar-scan'
     | '/docs/robo-brain'
+    | '/docs/satellite'
     | '/docs/server-rack'
     | '/docs/server-stack'
     | '/docs/solana-tokens'
@@ -379,6 +393,13 @@ declare module '@tanstack/react-router' {
       path: '/server-rack'
       fullPath: '/docs/server-rack'
       preLoaderRoute: typeof DocsServerRackLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/satellite': {
+      id: '/docs/satellite'
+      path: '/satellite'
+      fullPath: '/docs/satellite'
+      preLoaderRoute: typeof DocsSatelliteLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
     '/docs/robo-brain': {
@@ -513,6 +534,7 @@ interface DocsRouteRouteChildren {
   DocsMicRippleLazyRoute: typeof DocsMicRippleLazyRoute
   DocsRadarScanLazyRoute: typeof DocsRadarScanLazyRoute
   DocsRoboBrainLazyRoute: typeof DocsRoboBrainLazyRoute
+  DocsSatelliteLazyRoute: typeof DocsSatelliteLazyRoute
   DocsServerRackLazyRoute: typeof DocsServerRackLazyRoute
   DocsServerStackLazyRoute: typeof DocsServerStackLazyRoute
   DocsSolanaTokensLazyRoute: typeof DocsSolanaTokensLazyRoute
@@ -535,6 +557,7 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsMicRippleLazyRoute: DocsMicRippleLazyRoute,
   DocsRadarScanLazyRoute: DocsRadarScanLazyRoute,
   DocsRoboBrainLazyRoute: DocsRoboBrainLazyRoute,
+  DocsSatelliteLazyRoute: DocsSatelliteLazyRoute,
   DocsServerRackLazyRoute: DocsServerRackLazyRoute,
   DocsServerStackLazyRoute: DocsServerStackLazyRoute,
   DocsSolanaTokensLazyRoute: DocsSolanaTokensLazyRoute,
