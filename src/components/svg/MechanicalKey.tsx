@@ -48,7 +48,7 @@ export default function MechanicalKey({
   className = "w-80",
   colors,
   animate = true,
-  staggerDelay = 0.2,
+  staggerDelay = 0,
   initialDelay = 0.3,
   duration = 0.9,
 }: Props) {
@@ -71,7 +71,7 @@ export default function MechanicalKey({
     ? { y: 0, transition: { duration, delay: initialDelay + staggerDelay, ease: [0.22, 1, 0.36, 1] as const } }
     : undefined
   const whileInViewLight = animate
-    ? { opacity: 1, transition: { duration: 2, delay: initialDelay + 2 * staggerDelay + duration * 0.5, ease: "easeOut" as const } }
+    ? { opacity: 1, transition: { duration: 0.5, delay: 2 * staggerDelay + duration * 0.5, ease: "easeOut" as const } }
     : undefined
 
   return (
@@ -123,10 +123,10 @@ export default function MechanicalKey({
               viewport={animate ? { once: true, amount: 0.1 } : undefined}
             >
               <path id="Vector 21" d="M308.415 1471.81L1.91504 405.313L817.415 448.813L497.915 1471.81H308.415Z" fill={`url(#${paint0Id})`} />
-              <g id="glow-light" filter={`url(#${filter0Id})`}>
-                <rect x="377.915" y="897.313" width="58" height="568" rx="29" fill={`url(#${paint1Id})`} />
-              </g>
             </motion.g>
+            <g id="glow-light" filter={`url(#${filter0Id})`}>
+              <rect x="377.915" y="897.313" width="58" height="568" rx="29" fill={`url(#${paint1Id})`} />
+            </g>
             <g id="spring">
               <g id="spring-ring">
                 <path id="Vector 19" d="M377.873 1359.81C366.04 1363.98 343.773 1376.51 349.373 1393.31C356.373 1414.31 391.373 1421.81 407.373 1421.31C423.373 1420.81 457.373 1413.81 466.873 1393.31C474.473 1376.91 450.373 1364.15 437.373 1359.81" stroke={c.springOuter} strokeWidth="7" />
