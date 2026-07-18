@@ -255,5 +255,18 @@ export const componentMap: ComponentMapEntry[] = [
     },
     tags: ["dart", "bullseye", "target", "animation", "effects"],
     category: [categories.effects],
+  },
+  {
+    name: "FileUpload",
+    description: "a file upload icon with an arrow indicating the upload direction and optional animation",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      animate: "boolean",
+      text: "string",
+      arrowUp: "boolean",
+    },
+    tags: ["file", "upload", "arrow", "animation", "icons"],
+    category: [categories.icons],
   }
 ]

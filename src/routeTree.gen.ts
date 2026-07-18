@@ -31,6 +31,7 @@ const DocsGpuClusterLazyRouteImport = createFileRoute('/docs/gpu-cluster')()
 const DocsGpuChipLazyRouteImport = createFileRoute('/docs/gpu-chip')()
 const DocsGpuLazyRouteImport = createFileRoute('/docs/gpu')()
 const DocsFolderLazyRouteImport = createFileRoute('/docs/folder')()
+const DocsFileUploadLazyRouteImport = createFileRoute('/docs/file-upload')()
 const DocsFastZapLazyRouteImport = createFileRoute('/docs/fast-zap')()
 const DocsFastCompressLazyRouteImport = createFileRoute('/docs/fast-compress')()
 const DocsDartInBullseyeLazyRouteImport = createFileRoute(
@@ -136,6 +137,13 @@ const DocsFolderLazyRoute = DocsFolderLazyRouteImport.update({
   path: '/folder',
   getParentRoute: () => DocsRouteRoute,
 } as any).lazy(() => import('./routes/docs/folder.lazy').then((d) => d.Route))
+const DocsFileUploadLazyRoute = DocsFileUploadLazyRouteImport.update({
+  id: '/file-upload',
+  path: '/file-upload',
+  getParentRoute: () => DocsRouteRoute,
+} as any).lazy(() =>
+  import('./routes/docs/file-upload.lazy').then((d) => d.Route),
+)
 const DocsFastZapLazyRoute = DocsFastZapLazyRouteImport.update({
   id: '/fast-zap',
   path: '/fast-zap',
@@ -194,6 +202,7 @@ export interface FileRoutesByFullPath {
   '/docs/dart-in-bullseye': typeof DocsDartInBullseyeLazyRoute
   '/docs/fast-compress': typeof DocsFastCompressLazyRoute
   '/docs/fast-zap': typeof DocsFastZapLazyRoute
+  '/docs/file-upload': typeof DocsFileUploadLazyRoute
   '/docs/folder': typeof DocsFolderLazyRoute
   '/docs/gpu': typeof DocsGpuLazyRoute
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
@@ -218,6 +227,7 @@ export interface FileRoutesByTo {
   '/docs/dart-in-bullseye': typeof DocsDartInBullseyeLazyRoute
   '/docs/fast-compress': typeof DocsFastCompressLazyRoute
   '/docs/fast-zap': typeof DocsFastZapLazyRoute
+  '/docs/file-upload': typeof DocsFileUploadLazyRoute
   '/docs/folder': typeof DocsFolderLazyRoute
   '/docs/gpu': typeof DocsGpuLazyRoute
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
@@ -243,6 +253,7 @@ export interface FileRoutesById {
   '/docs/dart-in-bullseye': typeof DocsDartInBullseyeLazyRoute
   '/docs/fast-compress': typeof DocsFastCompressLazyRoute
   '/docs/fast-zap': typeof DocsFastZapLazyRoute
+  '/docs/file-upload': typeof DocsFileUploadLazyRoute
   '/docs/folder': typeof DocsFolderLazyRoute
   '/docs/gpu': typeof DocsGpuLazyRoute
   '/docs/gpu-chip': typeof DocsGpuChipLazyRoute
@@ -269,6 +280,7 @@ export interface FileRouteTypes {
     | '/docs/dart-in-bullseye'
     | '/docs/fast-compress'
     | '/docs/fast-zap'
+    | '/docs/file-upload'
     | '/docs/folder'
     | '/docs/gpu'
     | '/docs/gpu-chip'
@@ -293,6 +305,7 @@ export interface FileRouteTypes {
     | '/docs/dart-in-bullseye'
     | '/docs/fast-compress'
     | '/docs/fast-zap'
+    | '/docs/file-upload'
     | '/docs/folder'
     | '/docs/gpu'
     | '/docs/gpu-chip'
@@ -317,6 +330,7 @@ export interface FileRouteTypes {
     | '/docs/dart-in-bullseye'
     | '/docs/fast-compress'
     | '/docs/fast-zap'
+    | '/docs/file-upload'
     | '/docs/folder'
     | '/docs/gpu'
     | '/docs/gpu-chip'
@@ -444,6 +458,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsFolderLazyRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/file-upload': {
+      id: '/docs/file-upload'
+      path: '/file-upload'
+      fullPath: '/docs/file-upload'
+      preLoaderRoute: typeof DocsFileUploadLazyRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
     '/docs/fast-zap': {
       id: '/docs/fast-zap'
       path: '/fast-zap'
@@ -504,6 +525,7 @@ interface DocsRouteRouteChildren {
   DocsDartInBullseyeLazyRoute: typeof DocsDartInBullseyeLazyRoute
   DocsFastCompressLazyRoute: typeof DocsFastCompressLazyRoute
   DocsFastZapLazyRoute: typeof DocsFastZapLazyRoute
+  DocsFileUploadLazyRoute: typeof DocsFileUploadLazyRoute
   DocsFolderLazyRoute: typeof DocsFolderLazyRoute
   DocsGpuLazyRoute: typeof DocsGpuLazyRoute
   DocsGpuChipLazyRoute: typeof DocsGpuChipLazyRoute
@@ -526,6 +548,7 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsDartInBullseyeLazyRoute: DocsDartInBullseyeLazyRoute,
   DocsFastCompressLazyRoute: DocsFastCompressLazyRoute,
   DocsFastZapLazyRoute: DocsFastZapLazyRoute,
+  DocsFileUploadLazyRoute: DocsFileUploadLazyRoute,
   DocsFolderLazyRoute: DocsFolderLazyRoute,
   DocsGpuLazyRoute: DocsGpuLazyRoute,
   DocsGpuChipLazyRoute: DocsGpuChipLazyRoute,
