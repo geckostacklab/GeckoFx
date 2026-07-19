@@ -50,6 +50,33 @@ export const componentMap: ComponentMapEntry[] = [
     category: [ categories.ai],
   },
   {
+    name: "Satellite",
+    description:
+      "an orbiting communication satellite with animated solar panels, blinking status LEDs, a transmitting antenna, and expanding signal waves",
+    props: {
+      className: "string",
+      colors: "Partial<Colors>",
+      animate: "boolean",
+      entranceAnimation: "boolean",
+    },
+    tags: [
+      "satellite",
+      "space",
+      "communication",
+      "antenna",
+      "signal",
+      "orbit",
+      "hardware",
+      "infrastructure",
+      "ai",
+      "animation",
+    ],
+    category: [
+      categories.hardware,
+      categories.infrastructure,
+    ],
+  },
+  {
     name: "ConnectCube",
     description: "a 3D isometric cube with connecting lines and animated beam effects",
     props: {
