@@ -12,7 +12,7 @@ const DEFAULT_COLORS = {
     signal: "#D4537E",
     stroke: "#534AB7",
     glow: "#26215C",
-    thruster: "#F0997B",   // thruster glow — orange accent
+    thruster: "#F0997B",
 } as const
 
 type SatelliteColors = {
@@ -60,36 +60,20 @@ export default function Satellite({
             >
                 <style>{`
 
-/* =====================
-   FLOAT
-===================== */
-
 @keyframes satFloat {
     0%, 100% { transform: translateY(0px); }
     50%       { transform: translateY(-14px); }
 }
-
-/* =====================
-   SIGNAL RINGS
-===================== */
 
 @keyframes satSignal {
     0%   { transform: scale(1);  opacity: .85; }
     100% { transform: scale(9);  opacity: 0;   }
 }
 
-/* =====================
-   LED BLINK
-===================== */
-
 @keyframes satLed {
     0%, 100% { opacity: .18; }
     50%      { opacity: 1;   }
 }
-
-/* =====================
-   PANEL SHEEN
-===================== */
 
 @keyframes satSheen {
     0%, 100% { opacity: 0;   }
@@ -120,19 +104,13 @@ export default function Satellite({
                 `}</style>
 
                 <defs>
-                    {/* Dish soft glow */}
                     <filter id={fid(0)} x="-80%" y="-80%" width="260%" height="260%">
                         <feGaussianBlur stdDeviation="4" />
                     </filter>
-                    {/* Thruster glow */}
                     <filter id={fid(1)} x="-80%" y="-80%" width="260%" height="260%">
                         <feGaussianBlur stdDeviation="3" />
                     </filter>
                 </defs>
-
-                {/* =====================
-                    AMBIENT GLOW
-                ===================== */}
 
                 <ellipse
                     cx="250" cy="310"
@@ -141,15 +119,7 @@ export default function Satellite({
                     opacity=".22"
                 />
 
-                {/* =====================
-                    SATELLITE ROOT
-                ===================== */}
-
                 <g className={floatCls}>
-
-                    {/* ====================
-                        STRUT
-                    ==================== */}
 
                     <line
                         x1="148" y1="200"
@@ -158,10 +128,6 @@ export default function Satellite({
                         strokeWidth="2.5"
                         strokeLinecap="square"
                     />
-
-                    {/* ====================
-                        SOLAR PANEL (single, asymmetric)
-                    ==================== */}
 
                     <rect
                         x="24" y="120"
@@ -172,7 +138,6 @@ export default function Satellite({
                         strokeWidth="1.8"
                     />
 
-                    {/* Panel cells — 3 columns × 5 rows */}
                     {[26, 50, 74].map(x =>
                         [122, 154, 186, 218, 250].map(y => (
                             <rect
@@ -187,7 +152,6 @@ export default function Satellite({
                         ))
                     )}
 
-                    {/* Animated sheen stripe */}
                     <rect
                         className={sheenCls}
                         x="24" y="120"
@@ -197,17 +161,12 @@ export default function Satellite({
                         opacity="0"
                     />
 
-                    {/* Top edge highlight */}
                     <rect
                         x="24" y="120"
                         width="72" height="4"
                         fill={c.primary}
                         opacity=".7"
                     />
-
-                    {/* ====================
-                        BODY — bevelled polygon (asymmetric)
-                    ==================== */}
 
                     <polygon
                         points="148,148 292,148 308,164 308,252 148,252"
@@ -216,7 +175,6 @@ export default function Satellite({
                         strokeWidth="1.8"
                     />
 
-                    {/* Bevel edge accent */}
                     <line
                         x1="292" y1="148"
                         x2="308" y2="164"
@@ -224,7 +182,6 @@ export default function Satellite({
                         strokeWidth="1"
                     />
 
-                    {/* Inner motherboard */}
                     <rect
                         x="158" y="163"
                         width="90" height="68"
@@ -234,13 +191,11 @@ export default function Satellite({
                         strokeWidth=".8"
                     />
 
-                    {/* Motherboard grid */}
                     <line x1="158" y1="185" x2="248" y2="185" stroke={c.grid} strokeWidth=".6" />
                     <line x1="158" y1="210" x2="248" y2="210" stroke={c.grid} strokeWidth=".6" />
                     <line x1="180" y1="163" x2="180" y2="231" stroke={c.grid} strokeWidth=".6" />
                     <line x1="216" y1="163" x2="216" y2="231" stroke={c.grid} strokeWidth=".6" />
 
-                    {/* Corner brackets */}
                     <g stroke={c.primary} strokeWidth="1" strokeLinecap="round">
                         <path d="M158,163 L158,171 M158,163 L166,163" />
                         <path d="M248,163 L248,171 M248,163 L240,163" />
@@ -248,12 +203,10 @@ export default function Satellite({
                         <path d="M248,231 L248,223 M248,231 L240,231" />
                     </g>
 
-                    {/* Status LEDs — right side */}
                     <circle className={ledA} cx="293" cy="180" r="3" fill={c.led} />
                     <circle className={ledB} cx="293" cy="200" r="3" fill={c.led} />
                     <circle className={ledC} cx="293" cy="220" r="3" fill={c.led} />
 
-                    {/* Top vent strip */}
                     <rect
                         x="148" y="148"
                         width="160" height="6"
@@ -271,20 +224,12 @@ export default function Satellite({
                         />
                     ))}
 
-                    {/* ====================
-                        ANTENNA MAST
-                    ==================== */}
-
                     <line
                         x1="282" y1="148"
                         x2="318" y2="106"
                         stroke={c.stroke}
                         strokeWidth="1.5"
                     />
-
-                    {/* ====================
-                        DISH (rotated -20°)
-                    ==================== */}
 
                     <ellipse
                         cx="318" cy="100"
@@ -305,17 +250,11 @@ export default function Satellite({
                         transform="rotate(-20, 318, 100)"
                     />
 
-                    {/* Beacon */}
                     <circle cx="318" cy="94" r="2.5" fill={c.signal} />
 
-                    {/* Dish soft glow */}
                     <g filter={`url(#${fid(0)})`}>
                         <circle cx="318" cy="94" r="8" fill={c.signal} opacity=".25" />
                     </g>
-
-                    {/* ====================
-                        SIGNAL RINGS
-                    ==================== */}
 
                     <circle
                         className={sig1}
@@ -334,11 +273,6 @@ export default function Satellite({
                         strokeWidth="1.2"
                     />
 
-                    {/* ====================
-                        THRUSTERS (bottom)
-                    ==================== */}
-
-                    {/* Left thruster */}
                     <rect
                         x="182" y="252"
                         width="30" height="10"
@@ -353,7 +287,6 @@ export default function Satellite({
                         <ellipse className={ledA} cx="197" cy="275" rx="4" ry="6" fill={c.thruster} opacity=".45" />
                     </g>
 
-                    {/* Right thruster */}
                     <rect
                         x="226" y="252"
                         width="30" height="10"
