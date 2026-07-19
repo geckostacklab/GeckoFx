@@ -93,25 +93,24 @@ export default function ConnectCube({
           fill="none"
           preserveAspectRatio="xMidYMid meet"
         >
-          <rect x="127" y="58" width="178" height="119" fill={primary} />
-          {/* optional add more glow in the background */}
-          <path d="M216 16L398.731 126.25H33.2686L216 16Z" fill={primary} />
+          {/* for chrome remove them as blur does not show up in chrome  */}
+          {/* <rect x="127" y="58" width="178" height="119" fill={primary} />
+          <path d="M216 16L398.731 126.25H33.2686L216 16Z" fill={primary} /> */}
 
           {/* blured container */}
-          <foreignObject x="-71.1285" y="-96.7436" width="573.257" height="636.487"><div style={{
-            backdropFilter: "blur(50px)",
-            clipPath: "url(#bgblur_0_2013_3342_clip_path)",
-            height: "100%",
-            width: "100%"
-          }}></div></foreignObject>
-          <motion.path
+          <foreignObject x="-71.1285" y="-96.7436" width="573.257" height="636.487">
+            <div style={{
+              backdropFilter: "blur(50px)",
+              clipPath: "url(#bgblur_0_2013_3342_clip_path)",
+              height: "100%",
+              width: "100%"
+            }}></div>
+          </foreignObject>
+          <path
             data-figma-bg-blur-radius="100"
             d="M206.059 7.34668C211.879 3.89279 219.121 3.89279 224.941 7.34668L391.569 106.229C397.185 109.561 400.629 115.607 400.629 122.138V320.862C400.629 327.393 397.185 333.439 391.569 336.771L224.941 435.653C219.121 439.107 211.879 439.107 206.059 435.653L39.4307 336.771C33.8148 333.439 30.3712 327.393 30.3711 320.862V122.138C30.3712 115.607 33.8148 109.561 39.4307 106.229L206.059 7.34668Z"
             fill={beamColor} fillOpacity="0.05"
             stroke={`url(#${ids.p0})`} strokeWidth="3"
-            initial={{ strokeOpacity: 0.5 }}
-            animate={{ strokeOpacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.rect
             y="1" width="197.763" height="199"

@@ -61,8 +61,8 @@ export default function Lock({
             animate={
               canAnimate
                 ? {
-                  x: [0, -3, 3, -3, 3, -1.5, 1.5, 0],
-                  rotate: [0, -1.5, 1.5, -1.5, 1.5, -0.75, 0.75, 0],
+                  x: [0, -6, 6, -6, 6, -3, 3, 0],
+                  rotate: [0, -3, 3, -3, 3, -1.5, 1.5, 0],
                 }
                 : undefined
             }
@@ -102,31 +102,8 @@ export default function Lock({
               }}
             />
           </foreignObject>
-          <motion.g
+          <g
             id="lock-body-group"
-            style={{
-              transformBox: "fill-box",
-              transformOrigin: "center",
-            }}
-            initial={canAnimate ? { x: 0, rotate: 0 } : undefined}
-            animate={
-              canAnimate
-                ? {
-                  x: [0, -3, 3, -3, 3, -1.5, 1.5, 0],
-                  rotate: [0, -1.5, 1.5, -1.5, 1.5, -0.75, 0.75, 0],
-                }
-                : undefined
-            }
-            transition={
-              canAnimate
-                ? {
-                  duration: shakeDuration,
-                  delay: 0.1,
-                  ease: "easeOut",
-                  times: [0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1],
-                }
-                : undefined
-            }
           >
             <rect
               id="lock-body"
@@ -148,7 +125,7 @@ export default function Lock({
               r="22.5"
               fill={`url(#${keyHoleGradientId})`}
             />
-          </motion.g>
+          </g>
         </g>
         <defs>
           <clipPath id={clipPathId}>

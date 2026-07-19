@@ -25,7 +25,7 @@ export const componentMap: ComponentMapEntry[] = [
       flicker: "boolean",
     },
     tags: ["server", "stack", "led", "animation", "hardware", "infrastructure"],
-    category: [categories.hardware, categories.infrastructure],
+    category: [ categories.infrastructure],
   },
   {
     name: "GpuCluster",
@@ -36,7 +36,7 @@ export const componentMap: ComponentMapEntry[] = [
       fanAnimation: "boolean",
     },
     tags: ["gpu", "cluster", "chip", "fan", "animation", "hardware", "ai"],
-    category: [categories.hardware, categories.ai],
+    category: [ categories.ai],
   },
   {
     name: "GpuChip",
@@ -47,7 +47,7 @@ export const componentMap: ComponentMapEntry[] = [
       float: "boolean",
     },
     tags: ["gpu", "chip", "processor", "hardware", "ai"],
-    category: [categories.hardware, categories.ai],
+    category: [ categories.ai],
   },
   {
     name: "ConnectCube",
@@ -88,7 +88,7 @@ export const componentMap: ComponentMapEntry[] = [
       rotationDuration: "number",
     },
     tags: ["gpu", "chip", "fan", "animation", "hardware", "ai"],
-    category: [categories.hardware, categories.ai],
+    category: [ categories.ai],
   },
   {
     name: "AudioChip",
@@ -100,7 +100,7 @@ export const componentMap: ComponentMapEntry[] = [
       animate: "boolean",
     },
     tags: ["audio", "chip", "hardware", "animation"],
-    category: [categories.hardware, categories.ai],
+    category: [ categories.ai],
   },
   {
     name: "MicRipple",
@@ -166,7 +166,7 @@ export const componentMap: ComponentMapEntry[] = [
       radarDuration: "number",
     },
     tags: ["robotic", "brain", "animation", "hardware", "ai"],
-    category: [categories.hardware, categories.ai],
+    category: [ categories.ai],
   },
   {
     name: "Clock",
